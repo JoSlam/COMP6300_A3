@@ -17,9 +17,7 @@ class App extends Component {
 
   componentDidMount() {
     let endpointURL = `${appsettings.baseURL}/${appsettings.apiKey}`;
-    fetch(`${endpointURL}/${appsettings.search}/batman`, {
-      headers: { "Access-Control-Allow-Origin": "*" },
-    })
+    fetch(`${endpointURL}/${appsettings.search}/batman`)
       .then((data) => data.json())
       .then(console.log);
   }
