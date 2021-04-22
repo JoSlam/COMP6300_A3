@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Component, React } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import appsettings from "./appsettings.json";
+import avengers_pixelated from "./static/avengers_pixelated.png";
+import { Search } from "./components/search/search-component.jsx";
+
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      heroes: [],
+      searchValue: "",
+    };
+  }
+
+  componentDidMount() {
+    let endpointURL = `${appsettings.baseURL}/${appsettings.apiKey}`;
+    fetch(`${endpointURL}/${appsettings.search}/batman`, {
+      headers: { "Access-Control-Allow-Origin": "*" },
+    })
+      .then((data) => data.json())
+      .then(console.log);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <img src={avengers_pixelated} className="App-logo" alt="logo" />
+        <h1>Superhero Search</h1>
+
+        <Search placeholder="Search heroes" handler={this.handler} />
+      </div>
+    );
+  }
+
+  handler = (evt) => {
+    this.setState({ searchValue: evt.target.value });
+  };
 }
 
 export default App;
