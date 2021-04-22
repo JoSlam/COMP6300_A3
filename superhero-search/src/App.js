@@ -16,8 +16,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    let endpointURL = `${appsettings.baseURL}/${appsettings.apiKey}`;
-    fetch(`${endpointURL}/${appsettings.search}/batman`)
+    fetch(`${appsettings.baseURL}/?hero=batman`, {
+      headers: {
+        "x-rapidapi-key": `${appsettings.apiKey}`,
+        "x-rapidapi-host": "superhero-search.p.rapidapi.com",
+      },
+    })
       .then((data) => data.json())
       .then(console.log);
   }
