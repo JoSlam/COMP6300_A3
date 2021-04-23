@@ -16,12 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch(`${appsettings.baseURL}/?hero=batman`, {
-      headers: {
-        "x-rapidapi-key": `${appsettings.apiKey}`,
-        "x-rapidapi-host": "superhero-search.p.rapidapi.com",
-      },
-    })
+    fetch(`${appsettings.baseURL}/${appsettings.anime}/1/episodes/1`)
       .then((data) => data.json())
       .then(console.log);
   }
@@ -30,7 +25,7 @@ class App extends Component {
     return (
       <div className="App">
         <img src={avengers_pixelated} className="App-logo" alt="logo" />
-        <h1>Superhero Search</h1>
+        <h1 className="title">Superhero Search</h1>
 
         <Search placeholder="Search heroes" handler={this.handler} />
       </div>
