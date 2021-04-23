@@ -1,5 +1,9 @@
 export const Card = (anime) => (
   <div className="cardContainer">
+    {
+      // console.log(Object.keys(anime))
+    }
+
     <h2 className="anime-title">{anime.title}</h2>
     <img
       src={anime.image_url}

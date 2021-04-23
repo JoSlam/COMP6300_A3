@@ -22,9 +22,10 @@ class App extends Component {
     fetch(searchUrl)
       .then((data) => data.json())
       .then((searchResult) =>
-        this.setState({ anime: searchResult.results }, () =>
+        this.setState({ anime: searchResult.results })
+/*         this.setState({ anime: searchResult.results }, () =>
           console.log(this.state.anime)
-        )
+        ) */
       );
   }
 
