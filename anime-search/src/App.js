@@ -36,7 +36,6 @@ class App extends Component {
         <h1 className="title">Anime Search</h1>
 
         <Search placeholder="Search Anime" handler={this.handler} />
-
         <CardList anime={this.state.anime}/>
       </div>
     );

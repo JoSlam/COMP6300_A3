@@ -1,10 +1,4 @@
-import { React } from "react";
-
-export const Card = (anime) => {
-  // image
-  // title
-  // synopsis
-
+export const Card = (anime) => (
   <div className="cardContainer">
     <h2 className="anime-title">{anime.title}</h2>
     <img
@@ -14,5 +8,5 @@ export const Card = (anime) => {
       width="180px"
     />
     <p className="synopsis">{anime.synopsis}</p>
-  </div>;
-};
+  </div>
+);
