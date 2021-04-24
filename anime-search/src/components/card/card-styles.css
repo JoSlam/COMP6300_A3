@@ -1,26 +1,50 @@
-.card .title {
+.card-container .anime-title {
   font-family: PlayfairDisplay;
-  font-size: 20px;
-  color: #7afae3;
+  font-size: 30px;
+  color: #5eaaa8;
 }
 
 .card-container {
   display: flex;
   flex-direction: column;
-  background-color: #ea5c5a;
+  background-color: #a3d2ca;
+  border: 2px dashed gray;
   border-radius: 5px;
+  margin: 20px;
   padding: 25px;
   cursor: pointer;
   -moz-osx-font-smoothing: grayscale;
   backface-visibility: hidden;
   transform: translateZ(0);
   transition: transform 0.25s ease-out;
+  max-width: 300px;
 }
 
 .card-container:hover {
   transform: scale(1.05);
 }
 
-.synopsis {
+.card-container .divider {
+  border: 3px solid #f05945;
+  border-radius: 2px;
+  width: 100%;
+  margin-top: 0px;
+}
+
+.card-container .cover-pic {
+  border-radius: 10px;
+  box-shadow: 2px 2px gray;
+  width: 100%;
+  height: 360px;
+}
+
+.card-container .synopsis {
   font-family: Roboto;
+  font-size: 18px;
+  color: black;
+}
+
+.card-container .learn-more {
+  color: #f05945;
+  font-size: 10px;
 }

@@ -3,8 +3,8 @@ import { Component, React } from "react";
 
 import appsettings from "./appsettings.json";
 import totoro from "./static/totoro.png";
-import { Search } from "./components/search/search-component.jsx";
-import { CardList } from "./components/card-list/card-list-component.jsx";
+import { Search } from "./components/search/search.jsx";
+import { CardList } from "./components/card-list/card-list.jsx";
 
 class App extends Component {
   constructor() {
@@ -21,27 +21,29 @@ class App extends Component {
 
     fetch(searchUrl)
       .then((data) => data.json())
-      .then((searchResult) =>
-        this.setState({ anime: searchResult.results })
-/*         this.setState({ anime: searchResult.results }, () =>
-          console.log(this.state.anime)
-        ) */
-      );
+      .then((searchResult) => this.setState({ anime: searchResult.results }));
   }
 
   render() {
-    // add validation to input
     return (
       <div className="App">
-        <img src={totoro} className="App-logo" alt="logo" />
-        <h1 className="title">Anime Search</h1>
+        <div className="App-header">
+          <img src={totoro} className="App-logo" alt="logo" />
+          <h1 className="title">Anime Search</h1>
 
-        <Search placeholder="Search Anime" handler={this.handler} />
-        <CardList anime={this.state.anime}/>
+          <Search placeholder="Search Anime" handler={this.handler} />
+          {this.renderCardList(this.state.anime)}
+        </div>
       </div>
     );
   }
   // add button and place event on button click
+
+  renderCardList(anime) {
+    if (anime !== undefined && anime.length > 0) {
+      return <CardList anime={anime} />;
+    }
+  }
 
   handler = (evt) => {
     let searchBox = document.getElementById("search-input");

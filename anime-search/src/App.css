@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
 }
 
 .App-logo {
@@ -8,7 +7,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -21,7 +19,8 @@
 .title {
   font-family: PlayfairDisplay;
   font-size: 50px;
-  color: #7afae3;
-  margin:0px;
+  color: #e4bad4;
+  margin: 0px;
   padding: 5px;
+  text-shadow: #f6dfeb 10px 0px 10px;
 }

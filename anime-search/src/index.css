@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background: #3d85da;
+  background: #e4fbff;
 }
 
 code {
@@ -15,11 +15,13 @@ code {
 }
 
 @font-face {
-  font-family: 'PlayfairDisplay';
-  src: local('PlayfairDisplay'), url(./fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf) format('truetype');
+  font-family: "PlayfairDisplay";
+  src: local("PlayfairDisplay"),
+    url(./fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf) format("truetype");
 }
 
 @font-face {
-  font-family: 'Roboto';
-  src: local('Roboto'), url(./fonts/Roboto/Roboto-Thin.ttf) format('truetype');
+  font-family: "Roboto";
+  src: local("Roboto"),
+    url(./fonts/Roboto/Roboto-Regular.ttf) format("truetype");
 }

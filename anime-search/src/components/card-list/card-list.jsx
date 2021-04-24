@@ -1,8 +1,9 @@
-import { Card } from "../card/card-component";
+import { Card } from "../card/card";
+import "./card-list.styles.css"
 
 export const CardList = (props) => (
   <div className="card-list">
-    {console.log(props.anime[0])}
+    {console.log(props)}
     {props.anime.map((anime) => (
       <Card key={anime.mal_id} anime={anime} />
     ))}
