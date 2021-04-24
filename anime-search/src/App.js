@@ -56,7 +56,11 @@ class App extends Component {
   };
 
   updateListData(searchValue) {
-    if (searchValue && searchValue.length >= 3) {
+    if (
+      !searchValue ||
+      searchValue === "" ||
+      (searchValue && searchValue.length >= 3)
+    ) {
       this.searchByName(searchValue);
     } else {
       this.setState({ error: "Atleast 3 characters required." });
