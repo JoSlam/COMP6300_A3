@@ -5,6 +5,7 @@ App documentation:
     - The API sources data by web scraping a website known as https://myanimelist.net/
 
 Use:
+
     - On first load, the app loads up to 30 anime
     - Searching is in the PG category of film
     - Searching requires a minimum of 3 characters
