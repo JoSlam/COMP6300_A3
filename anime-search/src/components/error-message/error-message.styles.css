@@ -1,0 +1,9 @@
+.error-container {
+    width: 100%;
+}
+
+.error-container .error-text {
+  color: red;
+  text-align: center;
+  font-size: 35px;
+}

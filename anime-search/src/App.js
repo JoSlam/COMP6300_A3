@@ -5,23 +5,20 @@ import appsettings from "./appsettings.json";
 import totoro from "./static/totoro.png";
 import { Search } from "./components/search/search.jsx";
 import { CardList } from "./components/card-list/card-list.jsx";
+import { ErrorMessage } from "./components/error-message/error-message";
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      anime: [],
-      searchValue: "",
+      animeList: [],
+      error: "",
     };
   }
 
   componentDidMount() {
-    let searchUrl = this.getSearchUrl();
-
-    fetch(searchUrl)
-      .then((data) => data.json())
-      .then((searchResult) => this.setState({ anime: searchResult.results }));
+    this.searchByName();
   }
 
   render() {
@@ -31,35 +28,70 @@ class App extends Component {
           <img src={totoro} className="App-logo" alt="logo" />
           <h1 className="title">Anime Search</h1>
 
-          <Search placeholder="Search Anime" handler={this.handler} />
-          {this.renderCardList(this.state.anime)}
+          <Search placeholder="Search Anime" handler={this.searchHandler} />
+          {this.renderError(this.state.error)}
+          {this.renderCardList(this.state.animeList)}
         </div>
       </div>
     );
   }
-  // add button and place event on button click
+
+  renderError(message) {
+    if (message) {
+      return <ErrorMessage message={this.state.error} />;
+    }
+  }
 
   renderCardList(anime) {
     if (anime !== undefined && anime.length > 0) {
       return <CardList anime={anime} />;
+    } else {
+      return <ErrorMessage message={"No results found..."} />;
     }
   }
 
-  handler = (evt) => {
+  searchHandler = (evt) => {
     let searchBox = document.getElementById("search-input");
-    this.setState({ searchValue: searchBox.value });
+    this.updateListData(searchBox.value);
   };
 
+  updateListData(searchValue) {
+    if (searchValue && searchValue.length >= 3) {
+      this.searchByName(searchValue);
+    } else {
+      this.setState({ error: "Atleast 3 characters required." });
+    }
+  }
+
+  // Searches and updates the anime list
+  searchByName(searchValue) {
+    let searchUrl = this.getSearchUrl(searchValue);
+
+    fetch(searchUrl)
+      .then((data) => data.json())
+      .then((searchResult) =>
+        this.setState({ animeList: searchResult.results, error: "" }, () =>
+          console.log(this.state.animeList.length)
+        )
+      );
+  }
+
+  // Builds request URL
   getSearchUrl(searchValue) {
     let base = `${appsettings.baseURL}/${appsettings.search}?`;
+    let otherParams = this.getOtherParameters();
 
     if (searchValue) {
-      base += `q=${searchValue}&rated=${appsettings.rated}`;
+      base += `q=${searchValue}&${otherParams}`;
     } else {
-      base += `rated=${appsettings.rated}`;
+      base += otherParams;
     }
 
     return base;
+  }
+
+  getOtherParameters() {
+    return `rated=${appsettings.rated}&limit=${appsettings.limit}`;
   }
 }
 
